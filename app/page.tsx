@@ -1,103 +1,103 @@
+import Link from "next/link";
+import SwiperSlideshow from "@/components/SwiperSlideshow";
+import Markdown from "markdown-to-jsx/react";
+import { mussorie } from "@/constants/mussorie_images";
 import Image from "next/image";
+import { getData } from "@/lib/getdata";
+export default async function Home() {
+  const blogs = await getData("blogs");
+  const guide = await getData("guide");
 
-export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="scrollbar-hidden overflow-auto text-center select-none md:py-2">
+      <section className="flex flex-col justify-evenly px-4 sm:flex-row md:my-10 md:items-center">
+        <header className="my-10 flex flex-col items-start text-left font-bold dark:text-violet-200 md:my-0 md:px-4">
+          <div className="flex">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/logo/mobile-logo-light.png"
+              alt="logo"
+              width={1000}
+              height={1000}
+              className="w-12 h-20 md:w-14 md:h-30 block dark:hidden"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+            <Image
+              src="/logo/mobile-logo-dark.png"
+              alt="logo"
+              width={1000}
+              height={1000}
+              className="w-12 h-20 md:w-14 md:h-30 hidden dark:block"
+            />
+
+            <div>
+              <h1 className="text-4xl md:text-6xl">SOLO</h1>
+
+              <h1 className="text-4xl md:text-6xl">TRAVELER</h1>
+            </div>
+          </div>
+          <h3 className="pt-4 text-xl text-violet-600 md:text-2xl">
+            A platform for solo travelers
+          </h3>
+          <h2 className="text-lg text-violet-400">
+            Explore the world on your own
+          </h2>
+        </header>
+
+        <figure className="mx-auto h-75 w-[97%] overflow-hidden rounded-4xl bg-none md:mx-0 md:h-67.5 md:w-112.5">
+          <SwiperSlideshow images={mussorie} />
+        </figure>
+
+      </section>
+
+      <section className="flex lg:w-[80vw] max-lg:w-[90vw] mx-auto gap-10  text-left font-bold max-sm:my-10 max-sm:flex-col md:h-75 items-center justify-center ">
+        <article className="guide flex h-auto flex-col max-sm:px-4 md:w-[47%]">
+          <h1 className="text-2xl text-violet-700 ">Guide</h1>
+          <h3 className="my-2 text-violet-500 line-clamp-2">{guide[0].title}</h3>
+          <div className="my-2 overflow-hidden dark:text-violet-200 line-clamp-3 ">
+            <Markdown
+            >
+              {guide[0].content}
+            </Markdown>
+          </div>
+
+
+          <Link
+            href={{
+              pathname: "/content",
+              query: {
+                data: "guidepage",
+                id: 0,
+              },
+            }}
+            className="mx-auto my-2 block rounded-full bg-violet-600 px-4 py-2 text-xs text-violet-100"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            Read more
+          </Link>
+        </article>
+        <article className="blog flex flex-col items-start max-sm:px-4 md:w-[47%]">
+          <h1 className="text-2xl text-violet-600">Blogs</h1>
+          <h3 className="my-2 text-violet-500 line-clamp-2">{blogs[0].title}</h3>
+          <div className="my-2 line-clamp-3 overflow-hidden dark:text-violet-200">
+            <Markdown
+            >
+              {blogs[0].content}
+            </Markdown>
+          </div>
+          <Link
+            href={{
+              pathname: "/content",
+              query: {
+                data: "blogpage",
+                id: 0,
+              },
+            }}
+            className="mx-auto my-2 block rounded-full bg-violet-600 px-4 py-2 text-xs text-violet-100"
+          >
+            Read more
+          </Link>
+        </article>
+      </section>
+    </main>
   );
 }

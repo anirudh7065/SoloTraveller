@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { getData } from '@/lib/getPrismaData'
 import Image from 'next/image'
+// app/blog/layout.tsx
+export const dynamic = "force-dynamic";
+
 
 
 const Locations = async () => {

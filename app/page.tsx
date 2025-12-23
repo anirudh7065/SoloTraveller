@@ -4,6 +4,9 @@ import Markdown from "markdown-to-jsx/react";
 import { mussorie } from "@/constants/mussorie_images";
 import Image from "next/image";
 import { getData } from "@/lib/getPrismaData";
+// app/blog/layout.tsx
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const blogs = await getData("blogs");
   const guide = await getData("guide");

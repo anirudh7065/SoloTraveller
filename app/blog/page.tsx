@@ -3,6 +3,10 @@ import { getData } from '@/lib/getPrismaData';
 import Link from 'next/link'
 import Markdown from 'markdown-to-jsx/react'
 
+// app/blog/layout.tsx
+export const dynamic = "force-dynamic";
+
+
 const Blog = async () => {
   const blogs = await getData("blogs");
   return (

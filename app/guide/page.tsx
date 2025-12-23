@@ -1,6 +1,9 @@
 import Link from "next/link"
 import Markdown from "markdown-to-jsx/react";
 import { getData } from "@/lib/getPrismaData";
+// app/blog/layout.tsx
+export const dynamic = "force-dynamic";
+
 const Guide = async () => {
   const guide = await getData("guide")
   return (

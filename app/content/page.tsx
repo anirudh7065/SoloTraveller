@@ -1,11 +1,11 @@
 import ContentPage from "@/components/ContentPage"
-import { getData,data as dataType } from "@/lib/getdata"
+import { getData, data as dataType } from "@/lib/getPrismaData"
 
 export const metadata = {
   title: "Content",
   description: "Content Page of SoloTraveler.in",
 }
-const Content = async() => {
+const Content = async () => {
   const locations: dataType[] = await getData("locations");
   const blogs: dataType[] = await getData("blogs");
   const guide: dataType[] = await getData("guide");

@@ -6,17 +6,17 @@ import { ArrowBigLeftDash } from "lucide-react";
 // import locations from "@/constants/locations";
 // import blogs from "@/constants/blogs";
 import Markdown from 'markdown-to-jsx/react'
-import type { data as dataType}  from "@/lib/getdata";
+import type { data as dataType } from "@/lib/getPrismaData";
 
 
 
-const ContentPage = ({locations,blogs,guide}: {locations: dataType[],blogs: dataType[],guide: dataType[]}) => {
+const ContentPage = ({ locations, blogs, guide }: { locations: dataType[], blogs: dataType[], guide: dataType[] }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const id = searchParams.get("id");
     const dataParam = searchParams.get("data");
     const index = parseInt(id || "0");
-    const data = decodeURIComponent(dataParam|| "");
+    const data = decodeURIComponent(dataParam || "");
     useEffect(() => {
         if (!id || isNaN(index) || id.includes("/") || !data) {
             router.replace("/not-found");
@@ -32,7 +32,7 @@ const ContentPage = ({locations,blogs,guide}: {locations: dataType[],blogs: data
                 : blogs[index];
 
 
-    const title = obj?.title||notFound();
+    const title = obj?.title || notFound();
     const content = obj.content;
     // const lines = content.split("\n");
 

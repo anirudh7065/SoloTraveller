@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { getData } from '@/lib/getdata'
+import { getData } from '@/lib/getPrismaData'
 import Image from 'next/image'
 
 
-const Locations = async() => {
+const Locations = async () => {
   const locations = await getData("locations");
   return (
     <main className="scrollbar-hidden flex flex-col items-center justify-between overflow-auto py-10 select-none">
@@ -18,23 +18,23 @@ const Locations = async() => {
             className="relative inline-block rounded-3xl p-0.5  overflow-hidden w-[1fr] max-h-66"
             key={index}
           >
-              <Link
-                href={{
-                  pathname: "/content",
-                  query: {
-                    data: "locationpage",
-                    id: index,
-                  },
+            <Link
+              href={{
+                pathname: "/content",
+                query: {
+                  data: "locationpage",
+                  id: index,
+                },
               }}
               className='size-full overflow-hidden'
-              >
-                <Image src={data.image||"#"} alt={data.title} width={1000} height={1000} className=' object-cover h-full' />
+            >
+              <Image src={data.image || "#"} alt={data.title} width={1000} height={1000} className=' object-cover h-full' />
 
-                <h1 className="px-4 flex items-center text-4xl text-white text-shadow-lg/90 font-bold  absolute bottom-3   z-1000  w-full text-left">
+              <h1 className="px-4 flex items-center text-4xl text-white text-shadow-lg/90 font-bold  absolute bottom-3   z-1000  w-full text-left">
                 {data.title}
               </h1>
 
-              </Link>
+            </Link>
           </article>
         ))}
       </section>

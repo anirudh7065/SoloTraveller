@@ -1,5 +1,5 @@
 // import blogs from '@/constants/blogs'
-import { getData } from '@/lib/getdata';
+import { getData } from '@/lib/getPrismaData';
 import Link from 'next/link'
 import Markdown from 'markdown-to-jsx/react'
 
@@ -21,31 +21,31 @@ const Blog = async () => {
             className="relative mb-6  rounded-3xl p-0.5"
             key={index}
           >
-              <Link
-                href={{
-                  pathname: "/content",
-                  query: {
-                    data: "blogPage",
-                    id: index,
-                  },
-                }}
-              >
+            <Link
+              href={{
+                pathname: "/content",
+                query: {
+                  data: "blogPage",
+                  id: index,
+                },
+              }}
+            >
 
 
-            <div className="relative z-10 flex flex-col justify-items-center gap-3 rounded-4xl border-2 border-violet-400 p-8 ">
-              <h1 className="my-2 flex items-center text-lg font-bold text-violet-500 sm:text-4xl">
-                {item.title}
-              </h1>
-              <div className="line-clamp-4 text-md wrap-break-word text-ellipsis dark:text-violet-200">
+              <div className="relative z-10 flex flex-col justify-items-center gap-3 rounded-4xl border-2 border-violet-400 p-8 ">
+                <h1 className="my-2 flex items-center text-lg font-bold text-violet-500 sm:text-4xl">
+                  {item.title}
+                </h1>
+                <div className="line-clamp-4 text-md wrap-break-word text-ellipsis dark:text-violet-200">
                   <Markdown
                   >
                     {item.content}
                   </Markdown>
-              </div>
+                </div>
 
-                
-            </div>
-              </Link>
+
+              </div>
+            </Link>
           </article>
         ))}
       </section>

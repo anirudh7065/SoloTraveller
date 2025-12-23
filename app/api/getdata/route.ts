@@ -1,4 +1,4 @@
-import { getData, DataType } from "@/lib/getdata";
+import { getData, DataType } from "@/lib/getPrismaData";
 import { NextRequest, NextResponse } from "next/server";
 
 // type DataType = "locations" | "blogs" | "guide";

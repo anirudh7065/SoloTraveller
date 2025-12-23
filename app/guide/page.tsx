@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Markdown from "markdown-to-jsx/react";
-import { getData } from "@/lib/getdata";
-const Guide = async() => {
+import { getData } from "@/lib/getPrismaData";
+const Guide = async () => {
   const guide = await getData("guide")
   return (
     <main className="scrollbar-hidden flex flex-col items-center justify-between overflow-auto py-10 select-none">

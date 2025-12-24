@@ -1,5 +1,6 @@
 // import blogs from '@/constants/blogs'
-import { getData } from '@/lib/getPrismaData';
+import { fetchData } from '@/lib/supabase/db';
+import Loader from '@/components/loader';
 import Link from 'next/link'
 import Markdown from 'markdown-to-jsx/react'
 
@@ -8,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 
 const Blog = async () => {
-  const blogs = await getData("blogs");
+  const blogs = await fetchData("blogs");
   return (
     <main className="scrollbar-hidden flex flex-col items-center justify-between overflow-auto py-10 select-none">
       <h1 className="text-3xl font-bold text-violet-600">Blog</h1>
@@ -21,7 +22,7 @@ const Blog = async () => {
 
       {
         (blogs.length === 0) ? (
-          <h1 className="text-3xl font-bold text-violet-600">No Blogs Found</h1>
+          <Loader />
         ) : (
           <section className="mx-auto my-10 flex flex-col w-[80%] justify-center gap-5 px-4 py-2 ">
             {blogs.map((item, index) => (

@@ -3,14 +3,14 @@ import SwiperSlideshow from "@/components/SwiperSlideshow";
 import Markdown from "markdown-to-jsx/react";
 import { mussorie } from "@/constants/mussorie_images";
 import Image from "next/image";
-import { getData } from "@/lib/getPrismaData";
+import { fetchData } from "@/lib/supabase/db";
 import Loader from "@/components/loader";
 // app/blog/layout.tsx
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const blogs = await getData("blogs");
-  const guide = await getData("guide");
+  const blogs = await fetchData("blogs");
+  const guide = await fetchData("guide");
 
   return (
     <main className="scrollbar-hidden overflow-auto text-center select-none md:py-2">
@@ -55,16 +55,16 @@ export default async function Home() {
       </section>
 
       {
-        (blogs.length > 0 && guide.length > 0) ? (
+        (blogs.length  === 0 && guide.length === 0) && <Loader/> || (
 
           <section className="flex lg:w-[80vw] max-lg:w-[90vw] mx-auto gap-10  text-left font-bold max-sm:my-10 max-sm:flex-col md:h-75 items-center justify-center ">
             <article className="guide flex h-auto flex-col max-sm:px-4 md:w-[47%]">
               <h1 className="text-2xl text-violet-700 ">Guide</h1>
-              <h3 className="my-2 text-violet-500 line-clamp-2">{guide[0].title}</h3>
+              <h3 className="my-2 text-violet-500 line-clamp-2">{guide[0]?.title}</h3>
               <div className="my-2 overflow-hidden dark:text-violet-200 line-clamp-3 ">
                 <Markdown
                 >
-                  {guide[0].content}
+                  {guide[0]?.content}
                 </Markdown>
               </div>
 
@@ -84,11 +84,11 @@ export default async function Home() {
             </article>
             <article className="blog flex flex-col items-start max-sm:px-4 md:w-[47%]">
               <h1 className="text-2xl text-violet-600">Blogs</h1>
-              <h3 className="my-2 text-violet-500 line-clamp-2">{blogs[0].title}</h3>
+              <h3 className="my-2 text-violet-500 line-clamp-2">{blogs[0]?.title}</h3>
               <div className="my-2 line-clamp-3 overflow-hidden dark:text-violet-200">
                 <Markdown
                 >
-                  {blogs[0].content}
+                  {blogs[0]?.content}
                 </Markdown>
               </div>
               <Link
@@ -104,9 +104,7 @@ export default async function Home() {
                 Read more
               </Link>
             </article>
-          </section> ): (
-          <Loader />
-        )
+          </section> )
       }
     </main>
   );

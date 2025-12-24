@@ -6,11 +6,16 @@ import { ArrowBigLeftDash } from "lucide-react";
 // import locations from "@/constants/locations";
 // import blogs from "@/constants/blogs";
 import Markdown from 'markdown-to-jsx/react'
-import type { data as dataType } from "@/lib/getPrismaData";
+
+type data = {
+    title: string;
+    content: string;
+    image?: string;
+    
+}
 
 
-
-const ContentPage = ({ locations, blogs, guide }: { locations: dataType[], blogs: dataType[], guide: dataType[] }) => {
+const ContentPage = ({ locations, blogs, guide }: { locations:data[], blogs:data[], guide:data[] }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const id = searchParams.get("id");

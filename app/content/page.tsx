@@ -1,7 +1,7 @@
 import ContentPage from "@/components/ContentPage"
-import { getData, data as dataType } from "@/lib/getPrismaData"
 import { Suspense } from "react"
-
+import { fetchData } from "@/lib/supabase/db";
+import Loader from "@/components/loader";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
@@ -9,12 +9,12 @@ export const metadata = {
   description: "Content Page of SoloTraveler.in",
 }
 const Content = async () => {
-  const locations: dataType[] = await getData("locations");
-  const blogs: dataType[] = await getData("blogs");
-  const guide: dataType[] = await getData("guide");
+  const locations = await fetchData("locations");
+  const blogs = await fetchData("blogs");
+  const guide = await fetchData("guide");
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loader />}>
     <ContentPage locations={locations} blogs={blogs} guide={guide} />
     </Suspense>
   )

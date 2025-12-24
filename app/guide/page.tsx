@@ -1,11 +1,12 @@
 import Link from "next/link"
 import Markdown from "markdown-to-jsx/react";
-import { getData } from "@/lib/getPrismaData";
+import { fetchData } from "@/lib/supabase/db";
+import Loader from "@/components/loader";
 // app/blog/layout.tsx
 export const dynamic = "force-dynamic";
 
 const Guide = async () => {
-  const guide = await getData("guide")
+  const guide = await fetchData("guide")
   return (
     <main className="scrollbar-hidden flex flex-col items-center justify-between overflow-auto py-10 select-none">
       <h1 className="text-3xl font-bold text-violet-600">Guide</h1>
@@ -15,8 +16,11 @@ const Guide = async () => {
         this is a guide for solo travelers who want budget friendly and fun
         trips &#41;{" "}
       </h3>
-
-      <section className="mx-auto my-10 grid w-[90%] grid-cols-1 justify-items-center gap-5 px-4 py-2 md:grid-cols-2 lg:grid-cols-3">
+      {(guide.length === 0) ? (
+        <Loader />
+      ) : (
+          
+        <section className="mx-auto my-10 grid w-[90%] grid-cols-1 justify-items-center gap-5 px-4 py-2 md:grid-cols-2 lg:grid-cols-3">
         {guide.map((item, index) => (
           <article
             className="relative mb-6 inline-block rounded-3xl p-0.5"
@@ -52,6 +56,7 @@ const Guide = async () => {
           </article>
         ))}
       </section>
+      )}
     </main>
   );
 }

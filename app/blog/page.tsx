@@ -24,7 +24,7 @@ const Blog = async () => {
         (blogs.length === 0) ? (
           <Loader />
         ) : (
-          <section className="mx-auto my-10 flex flex-col w-[80%] justify-center gap-5 px-4 py-2 ">
+          <section className="mx-auto my-10 flex flex-col md:w-[80%] justify-center gap-5 px-4 py-2 ">
             {blogs.map((item, index) => (
               <article
                 className="relative mb-6  rounded-3xl p-0.5"

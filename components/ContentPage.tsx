@@ -59,12 +59,12 @@ const ContentPage = ({ locations, blogs, guide }: { locations:data[], blogs:data
                     overrides: {
                         h1: {
                             props: {
-                                className: "text-3xl font-bold mt-6 mb-4 text-violet-600",
+                                className: "text-2xl font-bold mt-6 mb-4 text-violet-600",
                             },
                         },
                         h2: {
                             props: {
-                                className: "text-2xl font-semibold mt-5 mb-3 text-violet-500",
+                                className: "text-lg font-semibold mt-5 mb-3 ",
                             },
                         },
                         p: {

@@ -17,9 +17,30 @@ export default function Navigation() {
 
 
   return (
-    <main className="my-3 flex h-[50px] w-screen items-center justify-between px-2 select-none md:my-4 md:h-[100px] md:px-8">
-      <figure className="logo max-sm:h-10 max-sm:w-10 md:w-12 md:h-14">
-        <Link href={"/"} >
+    <main className="my-3 flex h-12.5 w-screen items-center justify-between px-2 select-none md:my-4 md:h-[100px] md:px-8">
+      <figure className="logo max-sm:h-10 max-sm:w-8 md:w-12 md:h-14 ">
+        <Link href={"/"} className="md:hidden" >
+          {/* Light shown by default (server-rendered) */}
+          <Image
+            src="/logo/mobile-logo-light.png"
+            alt="logo"
+            width={1000}
+            height={1000}
+            className="block dark:hidden w-full h-full"
+            priority={true}
+          />
+
+          {/* Dark shown when .dark is on <html> (client toggles class) */}
+          <Image
+            src="/logo/mobile-logo-light.png"
+            alt="logo"
+            width={1000}
+            height={1000}
+            className="hidden dark:block w-full h-full"
+            priority={true}
+          />
+        </Link>
+        <Link href={"/"} className="max-sm:hidden">
           {/* Light shown by default (server-rendered) */}
           <Image
             src="/logo/st-logo-light.png"
@@ -72,9 +93,11 @@ export default function Navigation() {
         type="info"
         style=" signup px-4 py-2 max-sm:text-xs max-md:text-lg  bg-violet-700 text-violet-100  rounded-full max-sm:hidden cursor-pointer"
         />
+        <div className="max-sm:hidden">
         <ModeToggle/>
         </div>
-      <MobileNav aria-label="Mobile Navigation" theme={theme||"dark"} />
+        </div>
+      <MobileNav aria-label="Mobile Navigation"  />
     </main>
   );
 }

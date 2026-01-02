@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation/Navbar";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@/components/ThemeProvider/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,8 @@ export default function RootLayout({
             disableTransitionOnChange>
 
             <Navigation />
-            {children}
+          {children}
+          <Analytics />
             <ToastContainer />
           </ThemeProvider>
       </body>

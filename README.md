@@ -165,7 +165,8 @@ Each guide record contains:
 /contribution/guides/
 
 ````
-
+- check the example folders in each contribution folders for the structure
+  
 ### Review Process
 
 1. Dev adds Markdown file in contribution folder  
